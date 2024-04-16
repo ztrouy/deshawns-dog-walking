@@ -73,6 +73,22 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapGet("api/dogs", () =>
+{
+    List<DogDTO> dogDTOs = new List<DogDTO>();
 
+    foreach (Dog dog in dogs)
+    {
+        dogDTOs.Add(new DogDTO
+        {
+            Id = dog.Id,
+            Name = dog.Name,
+            WalkerId = dog.WalkerId,
+            CityId = dog.CityId
+        });
+    }
+
+    return dogDTOs;
+});
 
 app.Run();
