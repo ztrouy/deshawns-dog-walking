@@ -15,9 +15,9 @@ export default function Home() {
 
 
   return (
-    <div className="w-75 mx-auto mt-3 mb-3">
+    <div className="w-75 mx-auto">
       <div className="d-flex gap-3">
-        <p className="fs-3 fw-bold mt-2">Dogs</p>
+        <p className="fs-3 fw-bold mt-3">Dogs</p>
         <div className="my-auto">
           <Button className="btn-secondary">Add</Button>
         </div>
