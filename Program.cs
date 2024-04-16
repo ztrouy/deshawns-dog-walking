@@ -1,6 +1,60 @@
 using DeShawnsDogWalking.Models;
 using DeShawnsDogWalking.Models.DTOs;
 
+List<Dog> dogs = new List<Dog>()
+{
+    new Dog()
+    {
+        Id = 1,
+        Name = "Baxter"
+    },
+    new Dog()
+    {
+        Id = 2,
+        Name = "Luna"
+    },
+    new Dog()
+    {
+        Id = 3,
+        Name = "Charlie"
+    },
+    new Dog()
+    {
+        Id = 4,
+        Name = "Bella"
+    },
+    new Dog()
+    {
+        Id = 5,
+        Name = "Max"
+    },
+    new Dog()
+    {
+        Id = 6,
+        Name = "Daisy"
+    },
+    new Dog()
+    {
+        Id = 7,
+        Name = "Oliver"
+    },
+    new Dog()
+    {
+        Id = 8,
+        Name = "Lucy"
+    },
+    new Dog()
+    {
+        Id = 9,
+        Name = "Cooper"
+    },
+    new Dog()
+    {
+        Id = 10,
+        Name = "Molly"
+    }
+};
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
