@@ -1,3 +1,6 @@
+using DeShawnsDogWalking.Models;
+using DeShawnsDogWalking.Models.DTOs;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,10 +19,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/api/hello", () =>
-{
-    return new { Message = "Welcome to DeShawn's Dog Walking" };
-});
 
 
 app.Run();
