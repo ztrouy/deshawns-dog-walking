@@ -152,6 +152,39 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+var CreateDogDTO = (Dog dog) =>
+{
+    City foundCity = cities.First(city => city.Id == dog.CityId);
+    Walker foundWalker = null;
+    if (dog.WalkerId != null)
+    {
+        foundWalker = walkers.FirstOrDefault(walker => walker.Id == dog.WalkerId);
+    }
+    
+    DogDTO dogDTO = new DogDTO()
+    {
+        Id = dog.Id,
+        Name = dog.Name,
+        WalkerId = dog.WalkerId,
+        CityId = dog.CityId,
+        City = new CityDTO()
+        {
+            Id = foundCity.Id,
+            Name = foundCity.Name
+        }
+    };
+    if (foundWalker != null)
+    {
+        dogDTO.Walker = new WalkerDTO()
+        {
+            Id = foundWalker.Id,
+            Name = foundWalker.Name
+        };
+    }
+
+    return dogDTO;
+};
+
 app.MapGet("api/dogs", () =>
 {
     List<DogDTO> dogDTOs = new List<DogDTO>();
@@ -177,35 +210,8 @@ app.MapGet("api/dogs/{id}", (int id) =>
     {
         return Results.NotFound();
     }
-
-    Walker walker = null;
-    if (dog.WalkerId != null)
-    {
-        walker = walkers.FirstOrDefault(walker => walker.Id == dog.WalkerId);
-    }
-    City city = cities.FirstOrDefault(city => city.Id == dog.CityId);
-
-    DogDTO dogDTO = new DogDTO()
-    {
-        Id = dog.Id,
-        Name = dog.Name,
-        WalkerId = dog.WalkerId,
-        CityId = dog.CityId,
-        City = new CityDTO()
-        {
-            Id = city.Id,
-            Name = city.Name
-        }
-    };
-
-    if (walker != null)
-    {
-        dogDTO.Walker = new WalkerDTO()
-        {
-            Id = walker.Id,
-            Name = walker.Name
-        };
-    }
+    
+    DogDTO dogDTO = CreateDogDTO(dog);
 
     return Results.Ok(dogDTO);
 });
