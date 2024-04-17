@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, ButtonGroup } from 'reactstrap';
 import { createNewDog, getCities } from '../apiManager';
 
-export const DogAddModal = ({ modal, toggleModal, fetchDogs }) => {
+export const DogAddModal = ({ modal, toggleModal, fetchDogs, setChosenDog, toggleDetailsModal }) => {
     const [cities, setCities] = useState([])
     const [name, setName] = useState("")
     const [city, setCity] = useState(0)
@@ -28,9 +28,11 @@ export const DogAddModal = ({ modal, toggleModal, fetchDogs }) => {
             cityId: city
         }
 
-        createNewDog(newDogObject).then(() => {
+        createNewDog(newDogObject).then(createdDogObject => {
+            setChosenDog(createdDogObject)
             fetchDogs()
             toggleModal()
+            toggleDetailsModal()
         })
     }
 
