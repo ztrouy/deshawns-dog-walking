@@ -21,3 +21,7 @@ export const createNewDog = (newDogObject) => {
 export const getCities = () => {
   return fetch("api/cities").then(res => res.json())
 }
+
+export const getWalkers = () => {
+  return fetch("api/walkers").then(res => res.json())
+}
