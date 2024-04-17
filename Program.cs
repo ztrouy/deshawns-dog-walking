@@ -133,6 +133,75 @@ List<City> cities = new List<City>()
         Name = "Memphis"
     }
 };
+List<CityWalker> cityWalkers = new List<CityWalker>()
+{
+    new CityWalker()
+    {
+        Id = 1,
+        CityId = 1,
+        WalkerId = 1
+    },
+    new CityWalker()
+    {
+        Id = 2,
+        CityId = 2,
+        WalkerId = 1
+    },
+    new CityWalker()
+    {
+        Id = 3,
+        CityId = 3,
+        WalkerId = 2
+    },
+    new CityWalker()
+    {
+        Id = 4,
+        CityId = 4,
+        WalkerId = 3
+    },
+    new CityWalker()
+    {
+        Id = 5,
+        CityId = 1,
+        WalkerId = 4
+    },
+    new CityWalker()
+    {
+        Id = 6,
+        CityId = 1,
+        WalkerId = 5
+    },
+    new CityWalker()
+    {
+        Id = 7,
+        CityId = 4,
+        WalkerId = 5
+    },
+    new CityWalker()
+    {
+        Id = 8,
+        CityId = 1,
+        WalkerId = 6
+    },
+    new CityWalker()
+    {
+        Id = 9,
+        CityId = 2,
+        WalkerId = 7
+    },
+    new CityWalker()
+    {
+        Id = 10,
+        CityId = 1,
+        WalkerId = 8
+    },
+    new CityWalker()
+    {
+        Id = 11,
+        CityId = 4,
+        WalkerId = 8
+    }
+};
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -250,6 +319,32 @@ app.MapGet("api/cities", () =>
     }
 
     return cityDTOs;
+});
+
+app.MapGet("api/walkers", () =>
+{
+    List<WalkerDTO> walkerDTOs = new List<WalkerDTO>();
+
+    foreach (Walker walker in walkers)
+    {
+        List<CityWalker> foundCityWalkers = cityWalkers.Where(cityWalker => cityWalker.WalkerId == walker.Id).ToList();
+
+        WalkerDTO newWalkerDTO = new WalkerDTO()
+        {
+            Id = walker.Id,
+            Name = walker.Name,
+            CityWalkers = foundCityWalkers.Select(cityWalker => new CityWalkerDTO()
+            {
+                Id = cityWalker.Id,
+                CityId = cityWalker.CityId,
+                WalkerId = cityWalker.WalkerId
+            }).ToList(),
+        };
+        
+        walkerDTOs.Add(newWalkerDTO);
+    }
+
+    return walkerDTOs;
 });
 
 app.Run();
