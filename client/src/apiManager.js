@@ -6,6 +6,18 @@ export const getDogById = (id) => {
   return fetch(`api/dogs/${id}`).then(res => res.json())
 }
 
+export const createNewDog = (newDogObject) => {
+  const postOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newDogObject)
+  }
+
+  return fetch("api/dogs", postOptions).then(res => res.json())
+}
+
 export const getCities = () => {
   return fetch("api/cities").then(res => res.json())
 }
