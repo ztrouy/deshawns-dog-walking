@@ -170,4 +170,44 @@ app.MapGet("api/dogs", () =>
     return dogDTOs;
 });
 
+app.MapGet("api/dogs/{id}", (int id) =>
+{
+    Dog dog = dogs.FirstOrDefault(dog => dog.Id == id);
+    if (dog == null)
+    {
+        return Results.NotFound();
+    }
+
+    Walker walker = null;
+    if (dog.WalkerId != null)
+    {
+        walker = walkers.FirstOrDefault(walker => walker.Id == dog.WalkerId);
+    }
+    City city = cities.FirstOrDefault(city => city.Id == dog.CityId);
+
+    DogDTO dogDTO = new DogDTO()
+    {
+        Id = dog.Id,
+        Name = dog.Name,
+        WalkerId = dog.WalkerId,
+        CityId = dog.CityId,
+        City = new CityDTO()
+        {
+            Id = city.Id,
+            Name = city.Name
+        }
+    };
+
+    if (walker != null)
+    {
+        dogDTO.Walker = new WalkerDTO()
+        {
+            Id = walker.Id,
+            Name = walker.Name
+        };
+    }
+
+    return Results.Ok(dogDTO);
+});
+
 app.Run();
