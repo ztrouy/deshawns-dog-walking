@@ -6,52 +6,131 @@ List<Dog> dogs = new List<Dog>()
     new Dog()
     {
         Id = 1,
-        Name = "Baxter"
+        Name = "Baxter",
+        CityId = 1,
+        WalkerId = 1
     },
     new Dog()
     {
         Id = 2,
-        Name = "Luna"
+        Name = "Luna",
+        CityId = 2,
+        WalkerId = 1
     },
     new Dog()
     {
         Id = 3,
-        Name = "Charlie"
+        Name = "Charlie",
+        CityId = 3,
+        WalkerId = 2
     },
     new Dog()
     {
         Id = 4,
-        Name = "Bella"
+        Name = "Bella",
+        CityId = 4,
+        WalkerId = 3
     },
     new Dog()
     {
         Id = 5,
-        Name = "Max"
+        Name = "Max",
+        CityId = 1,
+        WalkerId = 4
     },
     new Dog()
     {
         Id = 6,
-        Name = "Daisy"
+        Name = "Daisy",
+        CityId = 2
     },
     new Dog()
     {
         Id = 7,
-        Name = "Oliver"
+        Name = "Oliver",
+        CityId = 3
     },
     new Dog()
     {
         Id = 8,
-        Name = "Lucy"
+        Name = "Lucy",
+        CityId = 4,
+        WalkerId = 5
     },
     new Dog()
     {
         Id = 9,
-        Name = "Cooper"
+        Name = "Cooper",
+        CityId = 1,
+        WalkerId = 6
     },
     new Dog()
     {
         Id = 10,
-        Name = "Molly"
+        Name = "Molly",
+        CityId = 2,
+        WalkerId = 7
+    }
+};
+List<Walker> walkers = new List<Walker>()
+{
+    new Walker()
+    {
+        Id = 1,
+        Name = "Isabelle"
+    },
+    new Walker()
+    {
+        Id = 2,
+        Name = "Renee"
+    },
+    new Walker()
+    {
+        Id = 3,
+        Name = "Ethan"
+    },
+    new Walker()
+    {
+        Id = 4,
+        Name = "Kyo"
+    },
+    new Walker()
+    {
+        Id = 5,
+        Name = "Rob"
+    },
+    new Walker()
+    {
+        Id = 6,
+        Name = "Jord"
+    },
+    new Walker()
+    {
+        Id = 6,
+        Name = "Chelsea"
+    }
+};
+List<City> cities = new List<City>()
+{
+    new City()
+    {
+        Id = 1,
+        Name = "Cordova"
+    },
+    new City()
+    {
+        Id = 2,
+        Name = "Nashville"
+    },
+    new City()
+    {
+        Id = 3,
+        Name = "Chattanooga"
+    },
+    new City()
+    {
+        Id = 4,
+        Name = "Memphis"
     }
 };
 
