@@ -7,7 +7,7 @@ This is an enhanced version of [Dog Walking](https://github.com/ztrouy/dog-walki
 - ReactJS
 - C#
 - ASP.NET
-- MUI
-- Emotion
+- Bootstrap
+- Reactstrap
 - Swagger
 - Vite
