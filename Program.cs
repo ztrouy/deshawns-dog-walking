@@ -236,4 +236,20 @@ app.MapPost("api/dogs", (DogAddDTO dogAdd) =>
     return Results.Created($"/api/dogs/{newDog.Id}", createdDog);
 });
 
+app.MapGet("api/cities", () =>
+{
+    List<CityDTO> cityDTOs = new List<CityDTO>();
+
+    foreach (City city in cities)
+    {
+        cityDTOs.Add(new CityDTO()
+        {
+            Id = city.Id,
+            Name = city.Name
+        });
+    }
+
+    return cityDTOs;
+});
+
 app.Run();
