@@ -23,7 +23,6 @@ export default function Home() {
     })
   }
 
-
   const toggleDetailsModal = () => {
     setDetailsModal(!detailsModal)
   }
@@ -43,7 +42,7 @@ export default function Home() {
       </div>
       {dogs.map(dog => <DogCard dog={dog} key={dog.id} setChosenDog={setChosenDog} toggleModal={toggleDetailsModal} />)}
       <DogDetailsModal dog={chosenDog} modal={detailsModal} toggleModal={toggleDetailsModal} />
-      <DogAddModal modal={addModal} toggleModal={toggleAddModal} fetchDogs={fetchDogs} />
+      <DogAddModal modal={addModal} toggleModal={toggleAddModal} fetchDogs={fetchDogs} setChosenDog={setChosenDog} toggleDetailsModal={toggleDetailsModal} />
     </div>
   )
 }
