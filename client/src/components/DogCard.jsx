@@ -13,7 +13,7 @@ export const DogCard = ({ dog, setChosenDog, toggleModal }) => {
         <Card className="mb-2">
             <CardBody className="row gx-1">
                 <div className="col-8 d-flex">
-                    <CardText className="fs-4 fw-bold" onClick={handleClick}>{dog.name}</CardText>
+                    <CardText className="fs-4 fw-bold" role="button" onClick={handleClick}>{dog.name}</CardText>
                 </div>
                 <div className="col-4 d-flex justify-content-end">
                     <Button>Remove</Button>

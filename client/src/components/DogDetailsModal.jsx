@@ -2,7 +2,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export const DogDetailsModal = ({ dog, modal, toggleModal }) => {
     return (
-        <Modal isOpen={modal} toggle={toggleModal}>
+        <Modal isOpen={modal} toggle={toggleModal} centered={true}>
             <ModalHeader className='d-flex'>
                 <div className='fs-4 fw-bold'>
                     {dog.name}
