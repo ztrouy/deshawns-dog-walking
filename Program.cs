@@ -106,7 +106,7 @@ List<Walker> walkers = new List<Walker>()
     },
     new Walker()
     {
-        Id = 6,
+        Id = 7,
         Name = "Chelsea"
     }
 };
