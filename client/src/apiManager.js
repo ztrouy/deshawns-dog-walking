@@ -22,6 +22,18 @@ export const createNewDog = (newDogObject) => {
   return fetch("api/dogs", postOptions).then(res => res.json())
 }
 
+export const assignDogWalker = (assignObject) => {
+  const patchOptions = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(assignObject)
+  }
+
+  return fetch("api/dogs/assign", patchOptions).then(res => res.json())
+}
+
 export const getCities = () => {
   return fetch("api/cities").then(res => res.json())
 }
