@@ -6,6 +6,10 @@ export const getDogById = (id) => {
   return fetch(`api/dogs/${id}`).then(res => res.json())
 }
 
+export const getDogsToAssign = (walkerId) => {
+  return fetch(`api/dogs/to-assign/${walkerId}`).then(res => res.json())
+}
+
 export const createNewDog = (newDogObject) => {
   const postOptions = {
     method: "POST",
