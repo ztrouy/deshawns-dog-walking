@@ -2,12 +2,18 @@ import { useEffect, useState } from "react"
 import { getCities, getWalkers } from "./apiManager.js"
 import { WalkerCard } from "./components/WalkerCard.jsx"
 import { Input, CloseButton } from "reactstrap"
+import { WalkerAssignDogModal } from "./components/WalkerAssignDogModal.jsx"
+import { DogDetailsModal } from "./components/DogDetailsModal.jsx"
 
 export const Walkers = () => {
     const [walkers, setWalkers] = useState([])
     const [filteredWalkers, setFilteredWalkers] = useState([])
     const [cities, setCities] = useState([])
     const [filterSelection, setFilterSelection] = useState(0)
+    const [chosenWalker, setChosenWalker] = useState({})
+    const [assignDogModal, setAssignDogModal] = useState(false)
+    const [chosenDog, setChosenDog] = useState({})
+    const [dogDetailsModal, setDogDetailsModal] = useState(false)
 
 
     useEffect(() => {
@@ -41,6 +47,14 @@ export const Walkers = () => {
         })
     }
 
+    const toggleAssignDogModal = () => {
+        setAssignDogModal(!assignDogModal)
+    }
+
+    const toggleDogDetailsModal = () => {
+        setDogDetailsModal(!dogDetailsModal)
+    }
+
 
     return (
         <div className="w-75 mx-auto">
@@ -65,7 +79,9 @@ export const Walkers = () => {
                     </Input>
                 </div>
             </div>
-            {filteredWalkers.map(walker => <WalkerCard walker={walker} key={walker.Id} />)}
+            {filteredWalkers.map(walker => <WalkerCard walker={walker} setChosenWalker={setChosenWalker} toggleModal={toggleAssignDogModal} key={walker.id} />)}
+            <WalkerAssignDogModal walker={chosenWalker} modal={assignDogModal} setChosenDog={setChosenDog} toggleModal={toggleAssignDogModal} toggleDogDetailsModal={toggleDogDetailsModal} />
+            <DogDetailsModal dog={chosenDog} modal={dogDetailsModal} toggleModal={toggleDogDetailsModal}/>
         </div>
     )
 }
