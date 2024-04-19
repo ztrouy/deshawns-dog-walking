@@ -38,6 +38,18 @@ export const getCities = () => {
   return fetch("api/cities").then(res => res.json())
 }
 
+export const createCity = (newCityObject) => {
+  const postOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newCityObject)
+  }
+
+  return fetch("api/cities", postOptions).then(res => res.json())
+}
+
 export const getWalkers = () => {
   return fetch("api/walkers").then(res => res.json())
 }
