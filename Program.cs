@@ -106,7 +106,7 @@ List<Walker> walkers = new List<Walker>()
     },
     new Walker()
     {
-        Id = 6,
+        Id = 7,
         Name = "Chelsea"
     }
 };
@@ -285,6 +285,28 @@ app.MapGet("api/dogs/{id}", (int id) =>
     return Results.Ok(dogDTO);
 });
 
+app.MapGet("api/dogs/assign/{walkerId}", (int walkerId) =>
+{
+    List<DogDTO> dogDTOs = new List<DogDTO>();
+    List<CityWalker> servicedCities = cityWalkers.Where(cityWalker => cityWalker.WalkerId == walkerId).ToList();
+
+    foreach (Dog dog in dogs)
+    {
+        if (walkerId != dog.WalkerId & servicedCities.FirstOrDefault(cityWalker => cityWalker.CityId == dog.CityId) != null)
+        {
+            dogDTOs.Add(new DogDTO
+            {
+                Id = dog.Id,
+                Name = dog.Name,
+                WalkerId = dog.WalkerId,
+                CityId = dog.CityId
+            });
+        }
+    }
+
+    return dogDTOs;
+});
+
 app.MapPost("api/dogs", (DogAddDTO dogAdd) =>
 {
     if (dogAdd.Name == "" | dogAdd.Name == null | dogAdd.CityId != dogs.FirstOrDefault(dog => dog.CityId == dogAdd.CityId)?.CityId)
@@ -303,6 +325,33 @@ app.MapPost("api/dogs", (DogAddDTO dogAdd) =>
     DogDTO createdDog = CreateDogDTO(newDog);
     
     return Results.Created($"/api/dogs/{newDog.Id}", createdDog);
+});
+
+app.MapPatch("api/dogs/assign", (DogAssignDTO dogToAssign) =>
+{
+    Dog foundDog = dogs.FirstOrDefault(dog => dog.Id == dogToAssign.Id);
+    if (foundDog == null)
+    {
+        return Results.BadRequest();
+    }
+
+    Walker foundWalker = walkers.FirstOrDefault(walker => walker.Id == dogToAssign.WalkerId);
+    if (foundWalker == null)
+    {
+        return Results.BadRequest();
+    }
+
+    CityWalker foundCityWalker = cityWalkers.FirstOrDefault(cityWalker => cityWalker.CityId == dogToAssign.CityId & cityWalker.WalkerId == dogToAssign.WalkerId);
+    if (foundCityWalker == null)
+    {
+        return Results.BadRequest();
+    }
+
+    foundDog.WalkerId = dogToAssign.WalkerId;
+
+    DogDTO dogDTO = CreateDogDTO(foundDog);
+
+    return Results.Created($"api/dogs/{dogDTO.Id}", dogDTO);
 });
 
 app.MapGet("api/cities", () =>

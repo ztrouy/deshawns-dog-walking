@@ -40,7 +40,7 @@ export default function Home() {
           <Button className="btn-secondary" onClick={toggleAddModal}>Add</Button>
         </div>
       </div>
-      {dogs.map(dog => <DogCard dog={dog} key={dog.id} setChosenDog={setChosenDog} toggleModal={toggleDetailsModal} />)}
+      {dogs.map(dog => <DogCard dog={dog} showRemove={true} isNameClickable={true} key={dog.id} setChosenDog={setChosenDog} toggleModal={toggleDetailsModal} />)}
       <DogDetailsModal dog={chosenDog} modal={detailsModal} toggleModal={toggleDetailsModal} />
       <DogAddModal modal={addModal} toggleModal={toggleAddModal} fetchDogs={fetchDogs} setChosenDog={setChosenDog} toggleDetailsModal={toggleDetailsModal} />
     </div>
