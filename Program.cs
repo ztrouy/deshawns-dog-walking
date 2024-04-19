@@ -285,7 +285,7 @@ app.MapGet("api/dogs/{id}", (int id) =>
     return Results.Ok(dogDTO);
 });
 
-app.MapGet("api/dogs/to-assign/{walkerId}", (int walkerId) =>
+app.MapGet("api/dogs/assign/{walkerId}", (int walkerId) =>
 {
     List<DogDTO> dogDTOs = new List<DogDTO>();
     List<CityWalker> servicedCities = cityWalkers.Where(cityWalker => cityWalker.WalkerId == walkerId).ToList();
