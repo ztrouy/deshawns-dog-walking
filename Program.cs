@@ -370,6 +370,29 @@ app.MapGet("api/cities", () =>
     return cityDTOs;
 });
 
+app.MapPost("api/cities", (CityAddDTO city) =>
+{
+    if (String.IsNullOrWhiteSpace(city.Name))
+    {
+        return Results.BadRequest();
+    }
+
+    City newCity = new City()
+    {
+        Id = cities.Max(city => city.Id) + 1,
+        Name = city.Name
+    };
+    cities.Add(newCity);
+
+    CityDTO createdCity = new CityDTO()
+    {
+        Id = newCity.Id,
+        Name = newCity.Name
+    };
+
+    return Results.Created($"api/cities/{newCity.Id}", createdCity);
+});
+
 app.MapGet("api/walkers", () =>
 {
     List<WalkerDTO> walkerDTOs = new List<WalkerDTO>();
