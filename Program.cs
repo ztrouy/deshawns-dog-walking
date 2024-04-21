@@ -454,27 +454,7 @@ app.MapGet("api/walkers/{id}", (int id) =>
         return Results.NotFound();
     }
 
-    List<CityWalker> foundCityWalkers = cityWalkers.Where(cityWalker => cityWalker.WalkerId == foundWalker.Id).ToList();
-    List<Dog> foundDogs = dogs.Where(dog => dog.WalkerId == foundWalker.Id).ToList();
-
-    WalkerDTO walkerDTO = new WalkerDTO()
-    {
-        Id = foundWalker.Id,
-        Name = foundWalker.Name,
-        CityWalkers = foundCityWalkers.Select(cityWalker => new CityWalkerDTO()
-        {
-            Id = cityWalker.Id,
-            CityId = cityWalker.CityId,
-            WalkerId = cityWalker.WalkerId
-        }).ToList(),
-        Dogs = foundDogs.Select(dog => new DogDTO()
-        {
-            Id = dog.Id,
-            Name = dog.Name,
-            CityId = dog.CityId,
-            WalkerId = dog.WalkerId
-        }).ToList()
-    };
+    WalkerDTO walkerDTO = CreateWalkerDTO(foundWalker);
 
     return Results.Ok(walkerDTO);
 });
