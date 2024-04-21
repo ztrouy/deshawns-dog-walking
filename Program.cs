@@ -480,13 +480,13 @@ app.MapPut("api/walkers", (WalkerUpdateDTO walkerDTO) =>
     }
 
     // Creates new City Walkers based received WalkerUpdateDTO
-    foreach (CityWalkerDTO cityWalkerDTO in walkerDTO.CityWalkers)
+    foreach (CityWalkerAddDTO cityWalkerAddDTO in walkerDTO.CityWalkers)
     {
         cityWalkers.Add(new CityWalker()
         {
             Id = cityWalkers.Max(cityWalker => cityWalker.Id),
-            CityId = cityWalkerDTO.CityId,
-            WalkerId = cityWalkerDTO.WalkerId
+            CityId = cityWalkerAddDTO.CityId,
+            WalkerId = cityWalkerAddDTO.WalkerId
         });
     }
 
