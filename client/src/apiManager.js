@@ -53,3 +53,7 @@ export const createCity = (newCityObject) => {
 export const getWalkers = () => {
   return fetch("api/walkers").then(res => res.json())
 }
+
+export const getWalkerById = (walkerId) => {
+  return fetch(`api/walkers/${walkerId}`).then(res => res.json())
+}
