@@ -106,7 +106,7 @@ export const WalkerDetailsModal = ({ walker, fetchWalkers, cities, modal, toggle
                 </Form>
                 {detailedWalker.dogs?.length >= 1 && (
                     <>
-                        <div className='fs-5 fw-bold mt-3'>Dogs</div>
+                        <div className='fs-5 fw-bold mt-3 mb-1'>Dogs</div>
                         <div className='w-100'>
                             {detailedWalker.dogs?.map(dog => <DogCard dog={dog} key={dog.id} />)}
                         </div>
