@@ -57,3 +57,15 @@ export const getWalkers = () => {
 export const getWalkerById = (walkerId) => {
   return fetch(`api/walkers/${walkerId}`).then(res => res.json())
 }
+
+export const updateWalker = (walkerObj) => {
+  const putOptions = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(walkerObj)
+  }
+
+  return fetch("api/walkers", putOptions).then(res => res.json())
+}
