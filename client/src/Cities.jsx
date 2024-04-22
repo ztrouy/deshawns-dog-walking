@@ -46,7 +46,6 @@ export const Cities = () => {
                     <div>
                         <Button onClick={handleAdd}>Add</Button>
                     </div>
-                    
                 </div>
             </div>
             {cities.map(city => <CityCard city={city} key={city.id} />)}
