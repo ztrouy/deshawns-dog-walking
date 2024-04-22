@@ -33,7 +33,7 @@ export const Cities = () => {
         <div className="w-75 mx-auto">
             <div className="d-flex row">
                 <div className="d-flex col-6">
-                    <p className="fs-3 fw-bold mt-3">Dogs</p>
+                    <p className="fs-3 fw-bold mt-3">Cities</p>
                 </div>
                 <div className="d-flex col-6 gap-2 align-items-center justify-content-end">
                     <div>
