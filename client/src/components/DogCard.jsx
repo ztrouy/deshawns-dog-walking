@@ -1,7 +1,7 @@
 import { Card, CardBody, CardText, Button } from "reactstrap"
-import { assignDogWalker, getDogById } from "../apiManager"
+import { assignDogWalker, deleteDog, getDogById } from "../apiManager"
 
-export const DogCard = ({ dog, setChosenDog, toggleModal, toggleOtherModal, showRemove, showAdd, isNameClickable, newWalker }) => {
+export const DogCard = ({ dog, setChosenDog, toggleModal, toggleOtherModal, showRemove, showAdd, isNameClickable, newWalker, fetchDogs }) => {
     const handleNameClick = () => {
         getDogById(dog.id).then(dogObject => {
             setChosenDog(dogObject)
@@ -22,6 +22,12 @@ export const DogCard = ({ dog, setChosenDog, toggleModal, toggleOtherModal, show
             toggleModal()
         })
     }
+
+    const handleRemove = () => {
+        deleteDog(dog.id).then(() => {
+            fetchDogs()
+        })
+    }
     
 
     return (
@@ -35,7 +41,7 @@ export const DogCard = ({ dog, setChosenDog, toggleModal, toggleOtherModal, show
                     )}
                 </div>
                 <div className="col-4 d-flex justify-content-end">
-                    {showRemove && <Button>Remove</Button>}
+                    {showRemove && <Button onClick={handleRemove}>Remove</Button>}
                     {showAdd && <Button onClick={handleAssign}>Assign</Button>}
                 </div>
             </CardBody>
