@@ -22,6 +22,12 @@ export const createNewDog = (newDogObject) => {
   return fetch("api/dogs", postOptions).then(res => res.json())
 }
 
+export const deleteDog = (dogId) => {
+  const deleteOptions = {method: "DELETE"}
+
+  return fetch(`api/dogs/${dogId}`, deleteOptions).then(res => res.json())
+}
+
 export const assignDogWalker = (assignObject) => {
   const patchOptions = {
     method: "PATCH",

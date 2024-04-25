@@ -15,7 +15,6 @@ export const Walkers = () => {
     const [assignDogModal, setAssignDogModal] = useState(false)
     const [chosenDog, setChosenDog] = useState({})
     const [dogDetailsModal, setDogDetailsModal] = useState(false)
-    const [detailedWalker, setDetailsWalker] = useState({})
     const [walkerModal, setWalkerModal] = useState(false)
 
 
