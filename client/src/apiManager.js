@@ -75,3 +75,9 @@ export const updateWalker = (walkerObj) => {
 
   return fetch("api/walkers", putOptions).then(res => res.json())
 }
+
+export const deleteWalker = (walkerId) => {
+  const deleteOptions = {method: "DELETE"}
+
+  return fetch(`api/walkers/${walkerId}`, deleteOptions).then(res => res.json())
+}
