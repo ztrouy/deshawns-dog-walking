@@ -41,7 +41,7 @@ export const assignDogWalker = (assignObject) => {
 }
 
 export const getCities = () => {
-  return fetch("/api/cities").then(res => res.json())
+  return fetch("api/cities").then(res => res.json())
 }
 
 export const createCity = (newCityObject) => {
