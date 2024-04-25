@@ -23,7 +23,7 @@ export const createNewDog = (newDogObject) => {
 }
 
 export const deleteDog = (dogId) => {
-  const deleteOptions = {medthod: "DELETE"}
+  const deleteOptions = {method: "DELETE"}
 
   return fetch(`api/dogs/${dogId}`, deleteOptions).then(res => res.json())
 }
@@ -41,7 +41,7 @@ export const assignDogWalker = (assignObject) => {
 }
 
 export const getCities = () => {
-  return fetch("api/cities").then(res => res.json())
+  return fetch("/api/cities").then(res => res.json())
 }
 
 export const createCity = (newCityObject) => {
