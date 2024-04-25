@@ -1,6 +1,7 @@
 import { Card, CardBody, CardText, Button } from "reactstrap"
+import { deleteWalker } from "../apiManager"
 
-export const WalkerCard = ({ walker, setChosenWalker, toggleModal, toggleWalkerDetailsModal }) => {
+export const WalkerCard = ({ walker, setChosenWalker, toggleModal, toggleWalkerDetailsModal, fetchWalkers }) => {
     const handleAddDog = () => {
         setChosenWalker(walker)
         toggleModal()
@@ -11,6 +12,12 @@ export const WalkerCard = ({ walker, setChosenWalker, toggleModal, toggleWalkerD
         toggleWalkerDetailsModal()
     }
 
+    const handleRemove = () => {
+        deleteWalker(walker.id).then(() => {
+            fetchWalkers()
+        })
+    }
+
     return (
         <Card className="mb-2">
             <CardBody className="row gx-1">
@@ -18,7 +25,7 @@ export const WalkerCard = ({ walker, setChosenWalker, toggleModal, toggleWalkerD
                     <CardText className="fs-4 fw-bold" role="button" onClick={handleNameClick}>{walker.name}</CardText>
                 </div>
                 <div className="col-4 d-flex gap-2 justify-content-end">
-                    <Button>Remove</Button>
+                    <Button onClick={handleRemove}>Remove</Button>
                     <Button onClick={handleAddDog}>Add Dog</Button>
                 </div>
             </CardBody>

@@ -85,7 +85,7 @@ export const Walkers = () => {
                     </Input>
                 </div>
             </div>
-            {filteredWalkers.map(walker => <WalkerCard walker={walker} setChosenWalker={setChosenWalker} toggleModal={toggleAssignDogModal} toggleWalkerDetailsModal={toggleWalkerDetailsModal} key={walker.id} />)}
+            {filteredWalkers.map(walker => <WalkerCard walker={walker} setChosenWalker={setChosenWalker} toggleModal={toggleAssignDogModal} toggleWalkerDetailsModal={toggleWalkerDetailsModal} fetchWalkers={fetchWalkers} key={walker.id} />)}
             <WalkerAssignDogModal walker={chosenWalker} modal={assignDogModal} setChosenDog={setChosenDog} toggleModal={toggleAssignDogModal} toggleDogDetailsModal={toggleDogDetailsModal} />
             <DogDetailsModal dog={chosenDog} modal={dogDetailsModal} toggleModal={toggleDogDetailsModal}/>
             <WalkerDetailsModal walker={chosenWalker} fetchWalkers={fetchWalkers} modal={walkerModal} toggleModal={toggleWalkerDetailsModal} cities={cities} />
